@@ -5,6 +5,8 @@ import dekk.pw.pokemate.Context;
 import dekk.pw.pokemate.Config;
 
 import java.util.ArrayList;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -14,6 +16,7 @@ public class TaskController extends Thread {
     public static final double VARIANCE = Config.getRange();
     private final Context context;
     private static ArrayList<Task> tasks = new ArrayList<>();
+    private static ExecutorService executor = Executors.newSingleThreadExecutor();
 
     public TaskController(final Context context) {
         this.context = context;
@@ -49,8 +52,10 @@ public class TaskController extends Thread {
     public void run() {
         try {
             while (true) {
-                tasks.forEach(Task::run);
-                TimeUnit.SECONDS.sleep(1);
+                for(Task t : tasks) {
+                    executor.submit(t);
+                    TimeUnit.MILLISECONDS.sleep(1200);
+                }
             }
         } catch (InterruptedException e) {
             e.printStackTrace();

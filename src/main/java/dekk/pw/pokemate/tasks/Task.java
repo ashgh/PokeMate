@@ -5,7 +5,7 @@ import dekk.pw.pokemate.Context;
 /**
  * Created by TimD on 7/21/2016.
  */
-public abstract class Task {
+public abstract class Task implements Runnable {
 
     protected final Context context;
 
@@ -13,6 +13,5 @@ public abstract class Task {
         this.context = context;
     }
 
-    abstract void run();
 
 }
