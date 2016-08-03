@@ -50,7 +50,7 @@ public class Update extends Task {
 			xpHr = (experienceGained / (runTime / 3.6E6));
 
             int curLevel = player.getStats().getLevel();
-            String playerinfo = "Current level: " + curLevel + " XP: " + curTotalXP + "/" + nextXP + " XP/hr: " + getXpHr();
+            String playerinfo = "Current level: " + curLevel + " XP until next lvl: " + (nextXP - curTotalXP) + " XP/hr: " + getXpHr();
             PokeMateUI.toast(playerinfo, "Player Info", "icons/items/backpack.png");
 
             if (curLevel > lastLevel) {
