@@ -85,7 +85,7 @@ public class CatchPokemon extends Task {
                         .ifPresent(p -> {
                             String output = null;
                             try {
-                                output = String.format("Caught a %s [CP: %d] [Candy: %d]", StringConverter.titleCase(targetId), p.getCp(), p.getCandy());
+                                output = String.format("Caught a %s [CP: %d] [IV: %d] [Candy: %d]", StringConverter.titleCase(targetId), p.getCp(), getIvRatio(p), p.getCandy());
                             } catch (LoginFailedException e) {
                                 e.printStackTrace();
                             } catch (RemoteServerException e) {
