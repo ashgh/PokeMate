@@ -38,7 +38,7 @@ public class Update extends Task {
             context.setProfile(player = context.getApi().getPlayerProfile());
             player.updateProfile();
             context.getApi().getInventories().updateInventories(true);
-            long nextXP = REQUIRED_EXPERIENCES[player.getStats().getLevel()] - REQUIRED_EXPERIENCES[player.getStats().getLevel() - 1];
+            long nextXP = REQUIRED_EXPERIENCES[player.getStats().getLevel()];
             long curTotalXP = player.getStats().getExperience();
             if (curTotalXP > lastExperience) {
                 if (lastExperience != 0) {
@@ -50,8 +50,7 @@ public class Update extends Task {
 			xpHr = (experienceGained / (runTime / 3.6E6));
 
             int curLevel = player.getStats().getLevel();
-
-            String playerinfo = "Current level: " + curLevel + " Remaining xp: " + (nextXP-experienceGained) + " XP/hr: " + getXpHr();
+            String playerinfo = "Current level: " + curLevel + " XP: " + curTotalXP + "/" + nextXP + " XP/hr: " + getXpHr();
             PokeMateUI.toast(playerinfo, "Player Info", "icons/items/backpack.png");
 
             if (curLevel > lastLevel) {
