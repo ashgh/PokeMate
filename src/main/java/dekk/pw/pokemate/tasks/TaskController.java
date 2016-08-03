@@ -54,7 +54,7 @@ public class TaskController extends Thread {
             while (true) {
                 for(Task t : tasks) {
                     executor.submit(t);
-                    TimeUnit.MILLISECONDS.sleep(1200);
+                    TimeUnit.MILLISECONDS.sleep(500);
                 }
             }
         } catch (InterruptedException e) {
